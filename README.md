@@ -22,7 +22,7 @@ This repository contains my Python3 class project.
 | Goal | Technologies/Details |
 |--|--|
 |☐ Create a graphic user interface (GUI)|[Kivy](https://kivy.org/#home)|
-|☐ Implement the cracking algorithm|[Dictionary Attack~~~~s](https://www.tech-faq.com/dictionary-attack.html)|
+|☐ Implement the cracking algorithm|[Dictionary Attacks](https://www.tech-faq.com/dictionary-attack.html)|
 |☐ Implement testing|[unittest](https://docs.python.org/3/library/unittest.html)|
 
 ## RO
