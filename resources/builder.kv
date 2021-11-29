@@ -1,0 +1,184 @@
+<LogoScreen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.get_bg()
+    AnchorLayout:
+        anchor_y: 'bottom'
+        padding: [0, 0, 0, 50]
+
+        Button:
+            text: "Start"
+            font_size: '15sp'
+            size_hint: (None, None)
+            on_press: root.manager.current = 'file_chooser'
+            size: 100, 50
+
+<FileChooserScreen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.get_bg()
+
+    AnchorLayout:
+        anchor_y: 'bottom'
+        padding: [0, 0, 0, 50]
+
+        PathButton:
+            text: 'Load archive'
+            font_size: '15sp'
+            size_hint: (None, None)
+            on_press: self.get_path()
+            on_release: root.manager.current = 'attack_method'
+            size: 100, 50
+
+<AttackMethodScreen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.get_bg()
+
+    AnchorLayout:
+        anchor_y: 'bottom'
+        anchor_x: 'center'
+        padding: [0, 0, 0, 10]
+
+        BoxLayout:
+            size_hint: None, None
+            orientation: "vertical"
+
+            Button:
+                text: 'Dictionary'
+                font_size: '15sp'
+                size_hint: (None, None)
+                on_press: root.manager.current = 'crack'
+                size: 100, 50
+
+            Button:
+                text: 'Brute Force'
+                font_size: '15sp'
+                size_hint: (None, None)
+                size: 100, 50
+                disabled: True
+
+<CrackScreen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.get_bg()
+
+    AnchorLayout:
+        anchor_y: 'bottom'
+        anchor_x: 'center'
+        padding: [0, 0, 0, 0]
+
+        BoxLayout:
+            size_hint: None, None
+            orientation: "vertical"
+
+            spacing: 0
+            padding: 1
+
+            ProgressBar:
+                value: .25
+                min: 0
+                max: 1
+                size: self.parent.size
+
+            Label:
+                text: 'password: abc'
+                color: 0.15, 0.09, 0.00, 1
+                font_size: '20sp'
+                bold: True
+
+            BoxLayout:
+                spacing: 10
+                padding: 10
+                Button:
+                    text: 'complete test'
+                    on_press: root.manager.current = 'completed'
+                    size: 100,50
+
+                Button:
+                    text: 'failed test'
+                    on_press: root.manager.current = 'failed'
+                    size: 100,50
+
+<ResultCompletedScreen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.get_bg()
+
+    AnchorLayout:
+        anchor_y: 'bottom'
+        anchor_x: 'center'
+        padding: [0, 0, 0, 20]
+
+        BoxLayout:
+            size_hint: None, None
+            orientation: "vertical"
+
+            spacing: 0
+            padding: 1
+
+            Label:
+                text: 'password: ABC123'
+                color: 0.15, 0.09, 0.00, 1
+                font_size: '15sp'
+                bold: True
+
+            CopyButton:
+                text: 'Copy to clipboard'
+                on_press: self.copy()
+                font_size: '10sp'
+
+            Label:
+                text: 'passwords checked: 13322'
+                color: 0.15, 0.09, 0.00, 1
+                font_size: '15sp'
+                bold: True
+
+            Label:
+                text: 'time: 23 minutes and 13 seconds'
+                color: 0.15, 0.09, 0.00, 1
+                font_size: '15sp'
+                bold: True
+
+
+<ResultFailedScreen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: self.get_bg()
+
+    AnchorLayout:
+        anchor_y: 'bottom'
+        anchor_x: 'center'
+        padding: [0, 0, 0, 20]
+
+        BoxLayout:
+            size_hint: None, None
+            orientation: "horizontal"
+
+            spacing: 10
+
+            Button:
+                text: 'Try again'
+                on_press: root.manager.current = 'attack_method'
+                size_hint: .5, None
+                size: 100, 30
+                font_size: '10sp'
+
+            Button:
+                text: 'Exit'
+                on_press: root.manager.current = ''
+                size_hint: .5, None
+                size: 100, 30
+                font_size: '10sp'
