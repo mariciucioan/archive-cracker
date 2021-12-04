@@ -10,8 +10,8 @@ This repository contains my Python3 class project.
 |--|--|  
 | Author | [Mariciuc Ioan (@mariciucioan)](https://github.com/mariciucioan/)  
 | Python Version | [Python 3.9](https://docs.python.org/3.9/) |  
-| Frameworks | [Kivy](https://kivy.org/#home), [unittest](https://docs.python.org/3/library/unittest.html)  
-| Supports | **.ZIP** files  
+| Frameworks | [Kivy](https://kivy.org/#home), [plyer](https://pypi.org/project/plyer/), [zipfile](https://docs.python.org/3/library/zipfile.html), [unittest](https://docs.python.org/3/library/unittest.html)| 
+| Supports | **.ZIP** files |
   
   
 #### Requirements  
@@ -36,7 +36,7 @@ Acest repository contine proiectul pentru laboratorul de Python3.
 |--|--|  
 | Autor | [Mariciuc Ioan (@mariciucioan)](https://github.com/mariciucioan/)  
 | Versiune Python | [Python 3.9](https://docs.python.org/3.9/) |  
-| Frameworks | [Kivy](https://kivy.org/#home), [unittest](https://docs.python.org/3/library/unittest.html)  
+| Frameworks | [Kivy](https://kivy.org/#home), [plyer](https://pypi.org/project/plyer/), [zipfile](https://docs.python.org/3/library/zipfile.html), [unittest](https://docs.python.org/3/library/unittest.html)  
 | Extensii suportate| **.ZIP** files  
   
 #### Cerinta  
