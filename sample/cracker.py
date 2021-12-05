@@ -1,29 +1,33 @@
-import itertools
-
 import pyzipper
-from tqdm import tqdm
-
 import threading
-
 import utils
 
-passlist = utils.get_resource('passlist.txt')
+from tqdm import tqdm
+from itertools import product
+
+default_passwords = utils.get_resource('passlist.txt')
+found_pass = None
 
 
-def extract(zipFile, pwd):
-    with pyzipper.AESZipFile(zipFile, 'r', compression=pyzipper.ZIP_DEFLATED,
-                             encryption=pyzipper.WZ_AES) as zip:
-        zip.extractall(pwd=str.encode(pwd))
+def extract(zip_file, pwd):
+    with pyzipper.AESZipFile(zip_file, 'r', compression=pyzipper.ZIP_DEFLATED,
+                             encryption=pyzipper.WZ_AES) as archive:
+        archive.extractall(pwd=str.encode(pwd))
 
 
-def dictionary_attack(zipFile, passlist=passlist):
-    wordlist = [passwords.strip() for passwords in open(passlist)]
-    progress_bar = tqdm(wordlist, desc="Checking passwords from dictionary")
+# noinspection PyBroadException
+def dictionary_attack(zip_file, pass_file=default_passwords):
     val = None
-    for i in progress_bar:
+
+    wordlist = [passwords.strip() for passwords in open(pass_file)]
+    progress_bar = tqdm(wordlist, desc="Checking passwords from dictionary")
+
+    for pwd in progress_bar:
         try:
-            extract(zipFile, i)
-            val = i
+            extract(zip_file, pwd)
+            val = pwd
+
+            progress_bar.set_postfix({'success': str(True) if val is not None else str(False)})
             break
         except:
             continue
@@ -31,59 +35,37 @@ def dictionary_attack(zipFile, passlist=passlist):
     return val
 
 
-def fact(n):
-    result = 1
-    i = 0
-    if (n <= 1):
-        return 1
-    for i in range(2, n + 1):
-        result = result * i
-    return result
-
-
-def count_passwords_brute(k_pass, n_chars):
-    pass_sum = 0
-    for i in range(1, k_pass+1):
-        pass_sum += (fact(n_chars) / fact(n_chars - i))
-
-    return pass_sum
-
-
-def count_chars(char_list):
-    chars_sum = 0
-    for i in char_list:
-        chars_sum += 1
-
-    return chars_sum
-
-found_pass = None
-
-def brute_force(zipFile, char_list, max_len, progress_bar):
+# thread process
+# noinspection PyBroadException
+def brute_force_process(zip_file, char_list, max_len, progress_bar):
     global found_pass
     found_pass = None
 
-    for p in itertools.product(char_list, repeat=max_len):
+    for p in product(char_list, repeat=max_len):
         if found_pass is not None:
             break
         try:
-            pwd = utils.combination_to_string(p)
+            pwd = utils.list_of_chars_to_string(p)
 
             progress_bar.update(1)
             progress_bar.set_postfix({"pass": pwd})
 
-            extract(zipFile, pwd)
+            extract(zip_file, pwd)
+
             found_pass = pwd
+            progress_bar.set_postfix({'success': str(True) if found_pass is not None else str(False)})
             break
         except:
             continue
 
-def brute_force_attack_multi_thread(zipFile, char_list=utils.DEFAULT_CHARS, max_len=utils.MAX_PASS_LEN):
-    all_passwords = count_passwords_brute(max_len, count_chars(char_list))
+
+def brute_force_attack_multi_thread(zip_file, char_list=utils.DEFAULT_CHARS, max_len=utils.MAX_PASS_LEN):
+    all_passwords = utils.count_brute_passwords(max_len, len(char_list))
     progress_bar = tqdm(range(int(all_passwords)), desc="Checking passwords")
 
     threads = []
     for i in range(0, max_len + 1, 1):
-        thread = threading.Thread(target=brute_force, args=(zipFile, char_list, i, progress_bar, ))
+        thread = threading.Thread(target=brute_force_process, args=(zip_file, char_list, i, progress_bar,))
         threads.append(thread)
         thread.start()
 
@@ -91,30 +73,3 @@ def brute_force_attack_multi_thread(zipFile, char_list=utils.DEFAULT_CHARS, max_
         thread.join()
 
     return found_pass
-
-def brute_force_attack(zipFile, char_list=utils.DEFAULT_CHARS, max_len=utils.MAX_PASS_LEN):
-    all_passwords = count_passwords_brute(max_len, count_chars(char_list))
-    output = f"{all_passwords:0f}"
-    output = int(float(output))
-    print(output)
-    val = None
-
-    progress_bar = tqdm(range(int(all_passwords)), desc="Checking passwords")
-    for i in range(0, max_len + 1, 1):
-        if val is not None:
-            break
-
-        for p in itertools.product(char_list, repeat=i):
-            try:
-                pwd = utils.combination_to_string(p)
-
-                progress_bar.update(1)
-                progress_bar.set_postfix({"pass": pwd})
-
-                extract(zipFile, pwd)
-                val = pwd
-                break
-            except:
-                continue
-
-    return val
