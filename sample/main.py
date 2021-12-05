@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from termcolor import colored
@@ -10,6 +11,8 @@ import sys
 import pyzipper
 
 import cracker
+
+import utils
 
 f_name = sys.argv[0]
 how_to = ''' You need to specify parameters.
@@ -26,6 +29,12 @@ how_to = ''' You need to specify parameters.
     py -3.9 %s terminal "C:\..\\file.zip" dictionary "C:\..\custom_dictionary.txt"
 ''' % (f_name, f_name, f_name, f_name)
 
+def print_password(val):
+    if val is None:
+        print(colored('[-] PASSWORD NOT FOUND', 'red'))
+    else:
+        print(colored('[+] FOUND PASSWORD: %s' % val, 'green'))
+
 if __name__ == "__main__":
     if len(sys.argv) == 1:
         print(colored(how_to, 'green'))
@@ -38,26 +47,30 @@ if __name__ == "__main__":
         elif(param1 == 'terminal'):
             try:
                 param2 = sys.argv[2]
-                if zipfile.is_zipfile(param2):
+                if zipfile.is_zipfile(param2) and os.path.isfile(param2):
                     try:
                         param3 = sys.argv[3].lower()
                         if param3 == 'brute':
-                            pass # implement brute attack for file
+                            try:
+                                val = cracker.brute_force_attack_multi_thread(zipFile=param2, max_len=10)
+                                print_password(val)
+                            except Exception as e:
+                                print(e)
                         elif param3 == 'dictionary':
                             try:
                                 param4 = sys.argv[4]
                                 if exists(param4):
-                                    pass # implement dictionary attack for file
+                                    val = cracker.dictionary_attack(param2, param4)
+                                    print_password(val)
                                 else:
                                     print(colored("@param4 file does not exist", 'red'))
                             except:
                                 val = cracker.dictionary_attack(param2)
-                                if val is None:
-                                    print(colored('Password not found', 'red'))
-                                else:
-                                    print(colored('Password: %s' % val))
+                                print_password(val)
                     except:
                         print(colored("@param3 not valid/does not exist", 'red'))
+                else:
+                    print(colored('@param2 error', 'red'))
             except:
                 print(colored("@param2 is not a zip file/does not exist", 'red'))
         else:

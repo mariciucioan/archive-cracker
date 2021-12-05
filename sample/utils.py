@@ -2,6 +2,8 @@ import os
 import string
 from pathlib import Path
 
+import itertools
+
 # Constants
 
 ROOT_DIR = Path(__file__).parent.parent
@@ -15,26 +17,25 @@ DEFAULT_CHARS = list(string.ascii_lowercase + string.ascii_uppercase + string.di
 def get_resource(name):
     return os.path.join(RESOURCES_DIR, name)
 
+def list_to_list_of_str(lst):
+    list = lst.copy()
+    arr = ['']
+    for i in list:
+        arr += i
+
+    return arr
+
+def combination_to_string(comb):
+    str = ''
+    for character in comb:
+        str += character
+
+    return str
+
 def differentFlagPermutations(max_len=MAX_PASS_LEN, arr=None):
     if arr is None:
         arr = DEFAULT_CHARS
 
-    ml = arr.copy()
-    vals = ml
-
-    count = len(ml)
-
-    for z in range(max_len - 1):
-        tmp = []
-
-        for i in arr:
-            for k in ml:
-                if i not in k:
-                    tmp.append(k + i)
-                    count += 1
-
-        vals += tmp
-
-        ml = tmp
+    vals = list_to_list_of_str(arr)
 
     return vals
