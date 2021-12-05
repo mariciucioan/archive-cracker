@@ -21,7 +21,7 @@
 | [pyzipper](https://pypi.org/project/pyzipper/) | Working with zip files |
     
 #### Requirements 
-> Write a tool that receives as parameters a ZIP archive and searches > for its password. The password must be alphanumeric and must have a > maximum length of 10 characters. **It must not use extern tools**.    
+> Write a tool that receives as parameters a ZIP archive and searches for its password. The password must be alphanumeric and must have a maximum length of 10 characters. **It must not use extern tools**.    
 
 #### Approach 
  | Goal | Technologies/Details |    
@@ -61,7 +61,7 @@
 | [pyzipper](https://pypi.org/project/pyzipper/) | Lucru cu fisierele .zip |
     
 #### Cerinta 
-> Scrieti un tool care primeste ca paramtru o arhiva parolata ZIP si > care ghiceste parola arhivei. Parola va fi alfanumerica si va avea > maxim 10 caractere. **Nu se pot folosi tool-uri externe**.    
+> Scrieti un tool care primeste ca paramtru o arhiva parolata ZIP si care ghiceste parola arhivei. Parola va fi alfanumerica si va avea maxim 10 caractere. **Nu se pot folosi tool-uri externe**.    
  #### Mod de abordare 
  | Scop | Tehnologii/Detalii |    
 |--|--|    
