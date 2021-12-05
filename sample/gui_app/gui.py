@@ -1,3 +1,5 @@
+import pyzipper
+from kivy.clock import Clock
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.core.clipboard import Clipboard
 from kivy.core.window import Window
@@ -6,8 +8,9 @@ from kivy.lang import Builder
 from kivy.app import App
 
 from plyer import filechooser
+from sample.utils import get_image, get_resource
 
-from utils import get_image, get_resource
+import sample.cracker as cracker
 
 # KV Builder
 
@@ -34,6 +37,36 @@ class AttackMethodScreen(Screen):
     def get_bg():
         return get_image('last_step.png')
 
+    @staticmethod
+    def dictionary_attack():
+        Clock.schedule_once(dictionary_atk, 1)
+
+    @staticmethod
+    def brute_force_attack():
+        Clock.schedule_once(brute_force, 1)
+
+
+def dictionary_atk(dt):
+    global password
+    password = cracker.dictionary_attack(path_to_archive)
+
+    if password is None:
+        sm.current = 'failed'
+    else:
+        sm.current = 'completed'
+
+
+def brute_force(dt):
+    global password
+
+    password = cracker.brute_force_attack_multi_thread(path_to_archive)
+
+    if password is None:
+        sm.current = 'failed'
+    else:
+        sm.current = 'completed'
+        sm.get_screen('completed').update_pwd(password)
+
 
 class CrackScreen(Screen):
     @staticmethod
@@ -42,6 +75,13 @@ class CrackScreen(Screen):
 
 
 class ResultCompletedScreen(Screen):
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.ids.label.text = 'Archive password: ' + '' if password is None else password
+
+    def update_pwd(self, pwd):
+        self.ids.label.text = 'Archive password: ' + pwd
+
     @staticmethod
     def get_bg():
         return get_image('completed.png')
@@ -57,20 +97,34 @@ class ResultFailedScreen(Screen):
 
 
 path_to_archive = ''
+attack_method = None
+password = None
 
 
 class PathButton(Button):
     @staticmethod
     def get_path():
         global path_to_archive
-        path_to_archive = filechooser.open_file(title="Pick a .ZIP archive file..",
-                                                filters=[("Zip archive file", "*.zip")])
+        while not pyzipper.is_zipfile(path_to_archive):
+            path_to_archive = str(filechooser.open_file(title="Pick a .ZIP archive file..",
+                                                        filters=[("Zip archive file", "*.zip")]))
+
+            file_path = ''
+            for char in path_to_archive:
+                if char == '[' or char == "'" or char == ']':
+                    continue
+
+                file_path += char
+
+            path_to_archive = file_path
+
+        sm.current = 'attack_method'
 
 
 class CopyButton(Button):
     @staticmethod
     def copy():
-        Clipboard.copy('password')
+        Clipboard.copy(password)
 
 
 # Scene manager

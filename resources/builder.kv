@@ -31,7 +31,6 @@
             font_size: '15sp'
             size_hint: (None, None)
             on_press: self.get_path()
-            on_release: root.manager.current = 'attack_method'
             size: 100, 50
 
 <AttackMethodScreen>:
@@ -55,14 +54,16 @@
                 font_size: '15sp'
                 size_hint: (None, None)
                 on_press: root.manager.current = 'crack'
+                on_release: root.dictionary_attack()
                 size: 100, 50
 
             Button:
                 text: 'Brute Force'
                 font_size: '15sp'
                 size_hint: (None, None)
+                on_press: root.manager.current = 'crack'
+                on_release: root.brute_force_attack()
                 size: 100, 50
-                disabled: True
 
 <CrackScreen>:
     canvas.before:
@@ -83,30 +84,17 @@
             spacing: 0
             padding: 1
 
-            ProgressBar:
-                value: .25
-                min: 0
-                max: 1
-                size: self.parent.size
-
             Label:
-                text: 'password: abc'
+                text: 'Searching for password... Please wait ... '
                 color: 0.15, 0.09, 0.00, 1
                 font_size: '20sp'
                 bold: True
 
-            BoxLayout:
-                spacing: 10
-                padding: 10
-                Button:
-                    text: 'complete test'
-                    on_press: root.manager.current = 'completed'
-                    size: 100,50
-
-                Button:
-                    text: 'failed test'
-                    on_press: root.manager.current = 'failed'
-                    size: 100,50
+            Label:
+                text: 'It can take between a few seconds and a few days...'
+                color: 0.15, 0.09, 0.00, 1
+                font_size: '16sp'
+                bold: True
 
 <ResultCompletedScreen>:
     canvas.before:
@@ -128,7 +116,8 @@
             padding: 1
 
             Label:
-                text: 'password: ABC123'
+                id: label
+                text: 'pass'
                 color: 0.15, 0.09, 0.00, 1
                 font_size: '15sp'
                 bold: True
@@ -137,18 +126,6 @@
                 text: 'Copy to clipboard'
                 on_press: self.copy()
                 font_size: '10sp'
-
-            Label:
-                text: 'passwords checked: 13322'
-                color: 0.15, 0.09, 0.00, 1
-                font_size: '15sp'
-                bold: True
-
-            Label:
-                text: 'time: 23 minutes and 13 seconds'
-                color: 0.15, 0.09, 0.00, 1
-                font_size: '15sp'
-                bold: True
 
 
 <ResultFailedScreen>:
