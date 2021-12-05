@@ -6,7 +6,7 @@
  This repository contains my Python3 class project.    
     
 | Name | Zipspy |    
-| -- | -- |    
+|--|--|    
 | Author | [Mariciuc Ioan (@mariciucioan)](https://github.com/mariciucioan/)    
 | Python Version | [Python 3.9](https://docs.python.org/3.9/) |    
 | Supports | **.ZIP** files |  
@@ -26,14 +26,20 @@
 #### Approach 
  | Goal | Technologies/Details |    
 | -- | -- |    
-| ☑ Create a graphic user interface (GUI) | [Kivy](https://kivy.org/#home) |    
-| ☑ Implement the cracking algorithm | [Dictionary](https://www.tech-faq.com/dictionary-attack.html) & [Brute Force](https://www.tech-faq.com/brute-force-attack.html) Attacks |    
-| ☐ Implement testing | [unittest](https://docs.python.org/3/library/unittest.html) |
+|☑ Create a graphic user interface (GUI)| [Kivy](https://kivy.org/#home) |    
+|☑ Implement the cracking algorithm | [Dictionary](https://www.tech-faq.com/dictionary-attack.html) & [Brute Force](https://www.tech-faq.com/brute-force-attack.html) Attacks |    
+|☑ Implement testing| [unittest](https://docs.python.org/3/library/unittest.html) |
 
 #### Accuracy and performance
 
  - Dictionary attacks are faster and can break common passwords and do not grant finding the password;
  - Brute attacks are slower but grant 100% accuracy for alphanumerical passwords with length <= 10. For a better performance we can make use of multi-threading.
+
+#### To do
+
+ - [ ] Connect the GUI app to the scripts and make it functional.
+ - [ ] Make a portable version of the GUI app.
+
     
 ## RO    
 #### Introducere    
@@ -59,11 +65,16 @@
  #### Mod de abordare 
  | Scop | Tehnologii/Detalii |    
 |--|--|    
-| ☑ Crearea unei interfete grafice pentru utilizator | [Kivy](https://kivy.org/#home) |    
-| ☑ Implementarea algoritmului pentru spargerea parolei | [Dictionary](https://www.tech-faq.com/dictionary-attack.html) & [Brute Force](https://www.tech-faq.com/brute-force-attack.html) Attacks |    
-| ☐ Implementarea testelor | [unittest](https://docs.python.org/3/library/unittest.html) |
+|☑ Crearea unei interfete grafice pentru utilizator| [Kivy](https://kivy.org/#home) |    
+|☑ Implementarea algoritmului pentru spargerea parolei| [Dictionary](https://www.tech-faq.com/dictionary-attack.html) & [Brute Force](https://www.tech-faq.com/brute-force-attack.html) Attacks |    
+|☑ Implementarea testelor| [unittest](https://docs.python.org/3/library/unittest.html) |
 
 #### Acuratete si performanta
 
  - Atacurile de tip "Dictionary Attacks" sunt mai rapide, insa nu garanteaza 100% gasirea parolei. Acest tip de atac verifica parolele intalnite in mod comun.
- - Atacurile de tip "Brute Force Attack" sunt mai incete, insa garanteaza 100% acuratete in gasirea parolelor alfanumerice mai scurte sau egale cu 10 caractere. Pentru o performanta mai buna se poate folosi cautarea multi-threading.
+ - Atacurile de tip "Brute Force Attack" sunt mai incete, insa garanteaza 100% acuratete in gasirea parolelor alfanumerice mai scurte sau egale cu 10 caractere. Pentru o performanta mai buna cautarea parole s-a facut ajutandu-ma de multi-threading.
+
+#### To do
+
+ - [ ] Comunicare intre GUI app si scripturi.
+ - [ ] Construirea unui executabil portabil pentru aplicatia grafica.
