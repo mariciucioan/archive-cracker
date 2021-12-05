@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).parent.parent
 RESOURCES_DIR = join(ROOT_DIR, 'resources')
 IMAGES_DIR = join(RESOURCES_DIR, 'images')
+TEST_DIR = join(RESOURCES_DIR, 'test_files')
 
 MAX_PASS_LEN = 10
 DEFAULT_CHARS = list(string.ascii_lowercase + string.ascii_uppercase + string.digits)
@@ -21,6 +22,9 @@ def get_resource(name):
 
 def get_image(name):
     return join(IMAGES_DIR, name)
+
+def get_test(name):
+    return join(TEST_DIR, name)
 
 
 def list_of_chars_to_string(comb):
