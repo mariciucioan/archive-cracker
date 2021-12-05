@@ -38,7 +38,7 @@
 #### To do
 
  - [x] Connect the GUI app to the scripts and make it functional.
- - [ ] ~~Make a portable version of the GUI app.~~
+ - [ ] ~~Make a portable version of the GUI app.~~ <- built application is too big to even care about that.
 
     
 ## RO    
@@ -77,4 +77,4 @@
 #### To do
 
  - [x] Comunicare intre GUI app si scripturi.
- - [ ] ~~Construirea unui executabil portabil pentru aplicatia grafica.~~
+ - [ ] ~~Construirea unui executabil portabil pentru aplicatia grafica.~~ <- aplicatia e prea mare si nu merita.
