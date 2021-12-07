@@ -22,20 +22,24 @@ def extract(zip_file, pwd):
 def dictionary_attack(zip_file, pass_file=default_passwords):
     val = None
 
-    wordlist = [passwords.strip() for passwords in open(pass_file)]
-    progress_bar = tqdm(wordlist, desc="Checking passwords from dictionary")
+    try:
+        pyzipper.ZipFile.extractall(zip_file)
+        return ''
+    except:
+        wordlist = [passwords.strip() for passwords in open(pass_file)]
+        progress_bar = tqdm(wordlist, desc="Checking passwords from dictionary")
 
-    for pwd in progress_bar:
-        try:
-            extract(zip_file, pwd)
-            val = pwd
+        for pwd in progress_bar:
+            try:
+                extract(zip_file, pwd)
+                val = pwd
 
-            progress_bar.set_postfix({'success': str(True) if val is not None else str(False)})
-            break
-        except:
-            continue
+                progress_bar.set_postfix({'success': str(True) if val is not None else str(False)})
+                break
+            except:
+                continue
 
-    return val
+        return val
 
 
 # thread process

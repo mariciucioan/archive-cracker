@@ -7,6 +7,7 @@ from kivy.uix.button import Button
 from kivy.lang import Builder
 from kivy.app import App
 
+from os import remove
 from plyer import filechooser
 from utils import get_image, get_resource
 
@@ -101,6 +102,7 @@ password = None
 
 
 class PathButton(Button):
+    # noinspection PyBroadException
     @staticmethod
     def get_path():
         global path_to_archive
@@ -117,7 +119,17 @@ class PathButton(Button):
 
             path_to_archive = file_path
 
-        sm.current = 'attack_method'
+            try:
+                with pyzipper.AESZipFile(path_to_archive, 'r') as archive:
+                    archive.extractall()
+                    for file in archive.namelist():
+                        remove(file)
+
+                sm.current = 'completed'
+                sm.get_screen('completed').update_pwd('')
+                print("The archive is not password protected!")
+            except:
+                sm.current = 'attack_method'
 
 
 class CopyButton(Button):
