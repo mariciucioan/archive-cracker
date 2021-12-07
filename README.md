@@ -2,7 +2,8 @@
   
     
 # archive-cracker      
-## EN #### Introduction      
+## EN 
+#### Introduction      
  This repository contains my Python3 class project.      
       
 | Name | Zipspy |      
@@ -43,7 +44,8 @@
  - [x] Check if the archive has a password.  
   
       
-## RO #### Introducere      
+## RO 
+#### Introducere      
  Acest repository contine proiectul pentru laboratorul de Python3.      
       
 | Nume | Zipspy |      
