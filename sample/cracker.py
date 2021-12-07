@@ -1,8 +1,6 @@
-from time import sleep
-
 import pyzipper
 import threading
-import sample.utils as utils
+import utils
 
 from os import remove
 from tqdm import tqdm

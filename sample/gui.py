@@ -8,14 +8,13 @@ from kivy.lang import Builder
 from kivy.app import App
 
 from plyer import filechooser
-from sample.utils import get_image, get_resource
+from utils import get_image, get_resource
 
-import sample.cracker as cracker
+import cracker
 
 # KV Builder
 
 Builder.load_file(get_resource('builder.kv'))
-
 
 # Screen classes
 
