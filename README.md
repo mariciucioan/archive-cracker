@@ -40,6 +40,8 @@
 
  - [x] Connect the GUI app to the scripts and make it functional.
  - [ ] ~~Make a portable version of the GUI app.~~ <- built application is too big to even care about that.
+ - [ ] For the GUI app make the password cracking run in different thread so the GUI app won't get 'not responding'.
+ - [ ] Check if the archive has a password.
 
     
 ## RO    
@@ -80,6 +82,8 @@
 
  - [x] Comunicare intre GUI app si scripturi.
  - [ ] ~~Construirea unui executabil portabil pentru aplicatia grafica.~~ <- aplicatia e prea mare si nu merita.
+ - [ ] Pentru aplicatia grafica algoritmul pentru gasirea parolei trebuie sa fie facut sa ruleze pe alt thread pentru a nu primit 'not responding'.
+ - [ ] Verifica daca fisierul are parola sau nu.
 
 ## IMAGES
 
