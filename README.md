@@ -19,6 +19,7 @@
 | [plyer](https://pypi.org/project/plyer/) | File chooser for GUI app |
 | [termcolor](https://pypi.org/project/termcolor/) | Terminal colors |
 | [pyzipper](https://pypi.org/project/pyzipper/) | Working with zip files |
+| [tqdm](https://tqdm.github.io/) | Progress bar |
     
 #### Requirements 
 > Write a tool that receives as parameters a ZIP archive and searches > for its password. The password must be alphanumeric and must have a > maximum length of 10 characters. **It must not use extern tools**.    
@@ -59,6 +60,7 @@
 | [plyer](https://pypi.org/project/plyer/) | File chooser pentru aplicatia grafica |
 | [termcolor](https://pypi.org/project/termcolor/) | Culori in terminal |
 | [pyzipper](https://pypi.org/project/pyzipper/) | Lucru cu fisierele .zip |
+| [tqdm](https://tqdm.github.io/) | Bara de progres |
     
 #### Cerinta 
 > Scrieti un tool care primeste ca paramtru o arhiva parolata ZIP si > care ghiceste parola arhivei. Parola va fi alfanumerica si va avea > maxim 10 caractere. **Nu se pot folosi tool-uri externe**.    
@@ -78,3 +80,19 @@
 
  - [x] Comunicare intre GUI app si scripturi.
  - [ ] ~~Construirea unui executabil portabil pentru aplicatia grafica.~~ <- aplicatia e prea mare si nu merita.
+
+## IMAGES
+
+### Terminal side
+![Terminal-1](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-1.PNG?raw=true)
+![Terminal-2](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-2.PNG?raw=true)
+
+##
+
+### GUI side
+![GUI-1](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-gui-1.PNG?raw=true)
+![GUI-2](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-gui-2-1.PNG?raw=true)
+![GUI-3](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-2-2.PNG?raw=true)
+![GUI-4](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-3.PNG?raw=true)
+![GUI-5](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-4.PNG?raw=true)
+![GUI-6](https://github.com/mariciucioan/archive-cracker/blob/main/resources/images/zipspy-pics/zipspy-5.PNG?raw=true)
